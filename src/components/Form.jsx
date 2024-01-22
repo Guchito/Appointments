@@ -7,6 +7,7 @@ const Form = () => {
   const [email, setEmail] = useState('');
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
+  const [error, setError] = useState(false)
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -14,11 +15,11 @@ const Form = () => {
     // Validation form
 
     if([name, owner, email, date, symptoms].includes('')){
-      console.log('campo vacio')
-    }else{
-      console.log('todos llenos')
+      setError(true)
+      return;
     }
 
+    setError(false)
     
   }
 
@@ -34,7 +35,12 @@ const Form = () => {
 
       <form 
         onSubmit = {handleSubmit}
-        className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
+        className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
+      >
+        {error && 
+          <div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md'>
+            <p>All fields are required</p>
+          </div>}
         <div className="mb-5">
           <label htmlFor='pet' className="block text-gray-700 uppercase font-bold">
             Pet Name
