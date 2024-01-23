@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import Error from './error';
 
-const Form = ({patients, setPatients}) => {
+const Form = ({patients, setPatients, patient}) => {
 
   const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
@@ -9,6 +9,17 @@ const Form = ({patients, setPatients}) => {
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
   const [error, setError] = useState(false)
+  
+  useEffect(() => {
+    if(Object.keys(patient).length > 0){
+      setName(patient.name)
+      setOwner(patient.owner)
+      setEmail(patient.email)
+      setDate(patient.date)
+      setSymptoms(patient.symptoms)
+    }
+  }, [patient])
+  
   const getId = () => {
     const random = Math.random().toString(36).substr(2)
     const date = Date.now().toString(36)
@@ -129,7 +140,7 @@ const Form = ({patients, setPatients}) => {
         type="submit"
         className="bg-indigo-600 w-full p-3 text-white text-center uppercase font-bold
          hover:bg-indigo-700 cursor-pointer transition-all"
-        value="Add patience"
+        value={ patient.id ? 'Update patient' : 'Add patient' }
         />
 
       </form>
