@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
+import Error from './error';
 
-const Form = () => {
+const Form = ({patients, setPatients}) => {
 
   const [name, setName] = useState('');
   const [owner, setOwner] = useState('');
@@ -8,6 +9,11 @@ const Form = () => {
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
   const [error, setError] = useState(false)
+  const getId = () => {
+    const random = Math.random().toString(36).substr(2)
+    const date = Date.now().toString(36)
+    return random + date
+  }
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -20,7 +26,25 @@ const Form = () => {
     }
 
     setError(false)
-    
+
+    //Patient object
+    const objectPatient = {
+      name, 
+      owner, 
+      email, 
+      date, 
+      symptoms,
+      id: getId()
+    }
+
+    setPatients([...patients, objectPatient])
+
+    //reset form
+    setName('')
+    setDate('')
+    setEmail('')
+    setOwner('')
+    setSymptoms('')
   }
 
 
@@ -37,22 +61,20 @@ const Form = () => {
         onSubmit = {handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
       >
-        {error && 
-          <div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md'>
-            <p>All fields are required</p>
-          </div>}
-        <div className="mb-5">
-          <label htmlFor='pet' className="block text-gray-700 uppercase font-bold">
-            Pet Name
-          </label>
-          <input 
-          id='pet'
-          type="text"
-          placeholder="Instert pet name"
-          className=" border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-          value={name}
-          onChange ={ (e) => setName(e.target.value) }
-          />
+      {error && <Error><p>All fields are required</p></Error> }
+
+      <div className="mb-5">
+        <label htmlFor='pet' className="block text-gray-700 uppercase font-bold">
+          Pet Name
+        </label>
+        <input 
+        id='pet'
+        type="text"
+        placeholder="Instert pet name"
+        className=" border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+        value={name}
+        onChange ={ (e) => setName(e.target.value) }
+        />
         </div>
         <div className="mb-5">
           <label htmlFor='owner' className="block text-gray-700 uppercase font-bold">
