@@ -8,6 +8,7 @@ A web application designed to help veterinary clinics manage patient follow-ups,
 * Track patient progress and update their status
 * Discharge patients and record discharge notes
 * View patient records and history
+* Save history locally
 
 ## Live Website
 
