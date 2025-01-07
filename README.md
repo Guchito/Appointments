@@ -1,6 +1,4 @@
-# React + Vite + Tailwind CSS
-
-# Veterinary Clinic Patient Follow-up
+# Veterinary Clinic Patient Follow-up / React + Vite + Tailwind CSS
 
 A web application designed to help veterinary clinics manage patient follow-ups, track symptoms, and discharge patients.
 
