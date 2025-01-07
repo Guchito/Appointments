@@ -12,7 +12,7 @@ A web application designed to help veterinary clinics manage patient follow-ups,
 
 ## Live Website
 
-You can view the live website at: [[Veterinary Following](https://vet-following.netlify.app/)]
+You can view the live website at: [Veterinary Following](https://vet-following.netlify.app/)
 
 
 ## Technologies
